@@ -23,6 +23,8 @@ def main():
         SIXTH_KEY, SEVENTH_KEY, EIGTH_KEY)
     device = uinput.Device(events)
 
+    pfio.init()
+
     while True:
         input_bitp = pfio.read_input()
         if input_bitp & 0x1:
