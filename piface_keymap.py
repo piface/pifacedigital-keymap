@@ -8,6 +8,8 @@ import uinput
 from time import sleep
 
 
+DELAY = 0.02
+
 FIRST_KEY   = uinput.KEY_1
 SECOND_KEY  = uinput.KEY_2
 THIRD_KEY   = uinput.KEY_3
@@ -15,27 +17,42 @@ FOURTH_KEY  = uinput.KEY_4
 FIFTH_KEY   = uinput.KEY_5
 SIXTH_KEY   = uinput.KEY_6
 SEVENTH_KEY = uinput.KEY_7
-EIGTH_KEY   = uinput.KEY_8
+EIGHTH_KEY   = uinput.KEY_8
 
 
 def main():
     events = (FIRST_KEY, SECOND_KEY, THIRD_KEY, FOURTH_KEY, FIFTH_KEY,
-        SIXTH_KEY, SEVENTH_KEY, EIGTH_KEY)
+        SIXTH_KEY, SEVENTH_KEY, EIGHTH_KEY)
     device = uinput.Device(events)
 
     pfio.init()
 
+    first_key_pressed   = False
+    second_key_pressed  = False
+    third_key_pressed   = False
+    fourth_key_pressed  = False
+    fifth_key_pressed   = False
+    sixth_key_pressed   = False
+    seventh_key_pressed = False
+    eighth_key_pressed  = False
+
     while True:
+        sleep(DELAY)
+
         input_bitp = pfio.read_input()
-        if input_bitp & 0x1:
+
+        if (input_bitp & 0x1) and not first_key_pressed:
             # first input pressed
+            first_key_pressed = True
             device.emit(FIRST_KEY, 1) # Press
-        else:
+        elif first_key_pressed:
             # first input not pressed
+            first_key_pressed = False
             device.emit(FIRST_KEY, 0) # Release
 
-        if input_bitp & 0x2:
+        if (input_bitp & 0x2) and not second_key_pressed:
             # second input pressed
+            second_key_pressed = True
             device.emit(SECOND_KEY, 1) # Press
         else:
             # second input not pressed
@@ -77,11 +94,11 @@ def main():
             device.emit(SEVENTH_KEY, 0) # Release
 
         if input_bitp & 0x80:
-            # eigth input pressed
-            device.emit(EIGTH_KEY, 1) # Press
+            # eighth input pressed
+            device.emit(EIGHTH_KEY, 1) # Press
         else:
-            # eigth input not pressed
-            device.emit(EIGTH_KEY, 0) # Release
+            # eighth input not pressed
+            device.emit(EIGHTH_KEY, 0) # Release
 
 if __name__ == "__main__":
     main()
