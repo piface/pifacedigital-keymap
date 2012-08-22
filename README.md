@@ -5,7 +5,12 @@ events on PiFace input changes.
 
 Dependencies
 ============
-[python-uinput](http://tjjr.fi/sw/python-uinput/)
+Download the latest version of [python-uinput](http://tjjr.fi/sw/python-uinput/) (0.8 at the time of writing) and install it.
+
+    $ wget https://launchpad.net/python-uinput/trunk/0.8/+download/python-uinput-0.8.tar.gz
+    $ tar -xvf python-uinput-0.8.tar.gz
+    $ cd python-uinput-0.8/
+    $ sudo python setup.py install
 
 Usage
 =====
