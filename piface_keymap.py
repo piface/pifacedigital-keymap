@@ -45,7 +45,7 @@ def main():
             # first input pressed
             first_key_pressed = True
             device.emit(FIRST_KEY, 1) # Press
-        elif first_key_pressed:
+        elif not (input_bitp & 0x01) and first_key_pressed:
             # first input not pressed
             first_key_pressed = False
             device.emit(FIRST_KEY, 0) # Release
@@ -54,7 +54,7 @@ def main():
             # second input pressed
             second_key_pressed = True
             device.emit(SECOND_KEY, 1) # Press
-        elif second_key_pressed:
+        elif not (input_bitp & 0x2) and second_key_pressed:
             # second input not pressed
             second_key_pressed = False
             device.emit(SECOND_KEY, 0) # Release
@@ -63,7 +63,7 @@ def main():
             # third input pressed
             third_key_pressed = True
             device.emit(THIRD_KEY, 1) # Press
-        elif third_key_pressed:
+        elif not (input_bitp & 0x4) and third_key_pressed:
             # third input not pressed
             third_key_pressed = False
             device.emit(THIRD_KEY, 0) # Release
@@ -72,7 +72,7 @@ def main():
             # fourth input pressed
             fourth_key_pressed = True
             device.emit(FOURTH_KEY, 1) # Press
-        elif fourth_key_pressed:
+        elif not (input_bitp & 0x8) and fourth_key_pressed:
             # fourth input not pressed
             fourth_key_pressed = False
             device.emit(FOURTH_KEY, 0) # Release
@@ -81,7 +81,7 @@ def main():
             # fifth input pressed
             fifth_key_pressed = True
             device.emit(FIFTH_KEY, 1) # Press
-        elif fifth_key_pressed:
+        elif (input_bitp & 0x10) and fifth_key_pressed:
             # fifth input not pressed
             fifth_key_pressed = False
             device.emit(FIFTH_KEY, 0) # Release
@@ -90,7 +90,7 @@ def main():
             # sixth input pressed
             sixth_key_pressed = True
             device.emit(SIXTH_KEY, 1) # Press
-        elif sixth_key_pressed:
+        elif not (input_bitp & 0x20) and sixth_key_pressed:
             # sixth input not pressed
             sixth_key_pressed = False
             device.emit(SIXTH_KEY, 0) # Release
@@ -99,7 +99,7 @@ def main():
             # seventh input pressed
             seventh_key_pressed = True
             device.emit(SEVENTH_KEY, 1) # Press
-        elif seventh_key_pressed:
+        elif not (input_bitp & 0x40) and seventh_key_pressed:
             # seventh input not pressed
             seventh_key_pressed = False
             device.emit(SEVENTH_KEY, 0) # Release
@@ -108,7 +108,7 @@ def main():
             # eighth input pressed
             eighth_key_pressed = True
             device.emit(EIGHTH_KEY, 1) # Press
-        elif eighth_key_pressed:
+        elif not (input_bitp & 0x80) and eighth_key_pressed:
             # eighth input not pressed
             eighth_key_pressed = False
             device.emit(EIGHTH_KEY, 0) # Release
