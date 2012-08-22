@@ -81,7 +81,7 @@ def main():
             # fifth input pressed
             fifth_key_pressed = True
             device.emit(FIFTH_KEY, 1) # Press
-        elif (input_bitp & 0x10) and fifth_key_pressed:
+        elif not (input_bitp & 0x10) and fifth_key_pressed:
             # fifth input not pressed
             fifth_key_pressed = False
             device.emit(FIFTH_KEY, 0) # Release
