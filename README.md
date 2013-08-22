@@ -1,30 +1,43 @@
 About
 =====
-Once started, PiFace Keymap will issue Linux uinput (keyboard/joystick)
-events on PiFace input changes.
+PiFace Keymap will issue uinput (keyboard/joystick) events on PiFace Digital
+input events.
 
-Dependencies and Installation
-=============================
-Download the latest version of [python-uinput](http://tjjr.fi/sw/python-uinput/
-(0.8 at the time of writing) and install it.
+python-uinput
+=============
+python-uinput is required for this program to work. There is no clean way of
+installing this on Debian as of yet. The cleanest way I have found is:
 
-    $ wget https://launchpad.net/python-uinput/trunk/0.8/+download/python-uinput-0.8.tar.gz
-    $ tar -xvf python-uinput-0.8.tar.gz
-    $ cd python-uinput-0.8/
-    $ sudo python setup.py install
+    sudo apt-get install libudev-dev python-all-dev
+    git clone https://github.com/tuomasjjrasanen/python-uinput.git
+    cd python-uinput/
+    sudo python setup.py install
 
-Also remember that you will need to activate the uinput kernel module. You can
-do this at run time with the following command:
+I have created an issue asking where the Debian packages are.
 
-    $ sudo modprobe uinput
+    https://answers.launchpad.net/python-uinput/+question/234455
 
-Or enable it at boot by adding *uinput* to /etc/modules
-
-    $ sudo echo "uinput" >> /etc/modules
+Hopefully this can provide a cleaner installation.
 
 Usage
 =====
-Since we are issuing kernel level key presses, the program must be run with
-root privelages:
+Since we are issuing kernel level key presses and we haven't done a clean
+installation, the program must be run with root privelages:
 
-    $ sudo python piface_keymap.py
+    $ sudo python pifacedigital_keymap.py
+
+The events emitted on inputs 0-7 are defined as:
+
+    UNINPUT_EVENTS = (
+        uinput.KEY_1,  # 0
+        uinput.KEY_2,
+        uinput.KEY_3,
+        uinput.KEY_4,
+        uinput.KEY_5,
+        uinput.KEY_6,
+        uinput.KEY_7,
+        uinput.KEY_8,  # 7
+    )
+
+Change these in the code to emit different keyboartd events. You can find a
+list of them in `/usr/include/linux/input.h`.
