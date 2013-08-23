@@ -13,14 +13,21 @@ installing this on Debian as of yet. The cleanest way I have found is:
     cd python-uinput/
     sudo python setup.py install
 
-I have created an issue asking where the Debian packages are.
+I have created an [issue](https://answers.launchpad.net/python-uinput/+question/234455)
+asking where the Debian packages are. Hopefully there will be a cleaner
+installation eventually.
 
-    https://answers.launchpad.net/python-uinput/+question/234455
+Also, for `python-uinput` to work you will have to load the `uinput` kernel
+module:
 
-Hopefully this can provide a cleaner installation.
+    sudo modprobe uinput
 
-Usage
-=====
+You can permenantly enable this by adding `uinput` to `/etc/modules`
+
+    sudo echo uinput >> /etc/modules
+
+Use
+===
 Since we are issuing kernel level key presses and we haven't done a clean
 installation, the program must be run with root privelages:
 
